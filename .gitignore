@@ -131,4 +131,4 @@ dist
 
 # nix/direnv
 .direnv
-
+.svelte-kit
