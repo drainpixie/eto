@@ -6,5 +6,5 @@ a short and sweet, uh, url shortener
 
 ```sh
 $ nix develop
-$ pnpm run
+$ dev
 ```
