@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "sqlite3": "^5.1.7"
+    "ioredis": "^5.4.1"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.2.1",

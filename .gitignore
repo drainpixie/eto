@@ -136,3 +136,6 @@ dist
 .svelte-kit
 .env
 
+# redis 
+appendonlydir
+dump.rdb
