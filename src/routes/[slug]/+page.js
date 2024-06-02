@@ -1,9 +1,10 @@
 import { error, redirect } from "@sveltejs/kit";
 import { find } from "../../lib/server/url";
 
+/** @type {import('@sveltejs/kit').Load} */
 export const load = async ({ params }) => {
-  const url = await find(params.slug);
-  if (url) return redirect(307, url);
+  const hash = await find(params.slug);
+  if (hash) return redirect(307, hash.url);
 
   error(404, "Page or Resource not found");
 };
