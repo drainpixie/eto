@@ -6,6 +6,9 @@ export const actions = {
     const data = await request.formData();
     const url = data.get("url");
 
-    return shorten(url);
+    const res = await shorten(url);
+
+    console.log(res);
+    return res;
   },
 };

@@ -61,6 +61,11 @@ button {
   font-size: 1rem;
 }
 
+button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+}
+
 .highlight {
   color: inherit;
 
@@ -75,4 +80,9 @@ button {
 .links a {
   color: var(--color-foreground);
   text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
 }

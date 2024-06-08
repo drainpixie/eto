@@ -1,4 +1,8 @@
 <script>
+	import { enhance } from "$app/forms";
+
+	export let form;
+
 	let url = "";
 	let extra = "";
 
@@ -17,7 +21,7 @@
 	</h1>
 
 	<div>
-		<form action="?/shorten" method="post">
+		<form action="?/shorten" method="post" use:enhance>
 			<input
 				type="url"
 				name="url"
@@ -31,7 +35,6 @@
 	</div>
 
 	<div class="links">
-		<!-- a href="?/list">List links</a> &middot; -->
 		<a href="?/delete">Delete a link</a> &middot;
 		<a
 			href="https://github.com/drainpixie/eto"
@@ -39,4 +42,9 @@
 			rel="noopener noreferrer">Eto source</a
 		>
 	</div>
+
+	{#if form?.success}
+		<p>Test</p>
+	{/if}
 </main>
+
