@@ -1,10 +1,14 @@
 <script>
 	import { enhance } from "$app/forms";
+	import { page } from "$app/stores";
 
+	/** @type {import("./$types").ActionData} */
 	export let form;
 
 	let url = "";
 	let extra = "";
+
+	$: baseURL = `${$page.url.protocol}//${$page.url.host}`;
 
 	function typewrite() {
 		if (extra.length < 3) extra += ".";
@@ -43,8 +47,25 @@
 		>
 	</div>
 
-	{#if form?.success}
-		<p>Test</p>
+	{#if form?.success && !closed}
+		<div class="success">
+			<p>
+				Your URL
+				<span class="highlight"
+					><a
+						href="{baseURL}/{form.data.slug}"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{baseURL}/{form.data.slug}
+					</a></span
+				>
+			</p>
+			<p>
+				Management key (delete, stats) <span class="highlight"
+					>{form.data.key}</span
+				>.
+			</p>
+		</div>
 	{/if}
 </main>
-

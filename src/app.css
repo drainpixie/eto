@@ -42,6 +42,11 @@ h1 {
   font-weight: 300;
 }
 
+h2 {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
 input {
   padding: 0.5rem;
   margin: 0.5rem;
@@ -72,12 +77,19 @@ button:hover {
   text-decoration: underline;
   text-decoration-skip-ink: none;
   text-decoration-color: var(--color-primary);
+}
 
+h1.highlight {
   text-decoration-thickness: 0.6rem;
   text-underline-offset: -0.5rem;
 }
 
-.links a {
+span.highlight {
+  text-decoration-thickness: 0.3rem;
+  text-underline-offset: -0.1rem;
+}
+
+a {
   color: var(--color-foreground);
   text-decoration: none;
 }
@@ -85,4 +97,13 @@ button:hover {
 .links a:hover {
   text-decoration: underline;
   text-decoration-color: var(--color-primary);
+}
+
+.success {
+  margin-top: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

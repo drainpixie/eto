@@ -1,3 +1,4 @@
+import { fail } from "@sveltejs/kit";
 import { shorten } from "../lib/server/url";
 
 /** @type {import('@sveltejs/kit').Actions} */
@@ -8,7 +9,7 @@ export const actions = {
 
     const res = await shorten(url);
 
-    console.log(res);
-    return res;
+    if (res.success) return res;
+    return fail(500, "Internal Server Error");
   },
 };
