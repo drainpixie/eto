@@ -21,6 +21,7 @@
             ${t}/bin/tmux new-session -d -s dev -n nvim
             ${t}/bin/tmux new-window -t dev -n vite "pnpm run dev"
             ${t}/bin/tmux new-window -t dev -n redis "${r}/bin/redis-server --loglevel verbose --appendonly yes"
+            ${t}/bin/tmux new-window -t dev -n redis-cli "${r}/bin/redis-cli"
           fi
 
           ${t}/bin/tmux attach-session -t dev
