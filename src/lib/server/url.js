@@ -3,16 +3,14 @@ import { randomUUID, randomBytes } from "node:crypto";
 
 // TODO: Maybe hash, maybe not, I don't think
 //			 we really need that much security here.
-function generateKey(length = 16) {
-  const bytes = randomBytes(Math.ceil(length / 2));
-  return bytes.toString("hex").slice(0, length);
-}
+const generateKey = (length = 16) =>
+  randomBytes(Math.ceil(length / 2))
+    .toString("hex")
+    .slice(0, length);
 
-export async function shorten(url) {
-  // TODO: Check for clashes, for now it's fine.
+const shorten = async (url) => {
   const slug = randomUUID().slice(0, 6);
   const key = `${URL_KEY}:${slug}`;
-
   const data = {
     url,
     slug,
@@ -21,15 +19,16 @@ export async function shorten(url) {
     key: generateKey(),
   };
 
-  try {
-    await redis.hset(key, data);
-    return { data, success: true };
-  } catch (error) {
-    return { error, success: false };
-  }
-}
+  const exists = await redis.exists(key);
+  if (exists) return shorten(url); // WARNING: Maybe just error out?
 
-export async function remove(slug, key) {
+  return redis
+    .hset(key, data)
+    .then(() => ({ data, status: 200, success: true }))
+    .catch((error) => ({ error: error.message, status: 500, success: false }));
+};
+
+const remove = async (slug, key) => {
   const url = await find(slug);
 
   if (!url.success)
@@ -38,18 +37,16 @@ export async function remove(slug, key) {
   if (url.data.key !== key)
     return { success: false, status: 401, error: "Unauthorized" };
 
-  await redis.del(`${URL_KEY}:${slug}`);
-}
+  return redis
+    .del(`${URL_KEY}:${slug}`)
+    .then(() => ({ success: true, status: 200 }))
+    .catch((error) => ({ success: false, status: 500, error: error.message }));
+};
 
-export async function find(slug) {
-  const key = `${URL_KEY}:${slug}`;
+const find = (slug) =>
+  redis
+    .hgetall(`${URL_KEY}:${slug}`)
+    .then((data) => ({ data, status: 200, success: true }))
+    .catch((error) => ({ error, status: 500, success: false }));
 
-  try {
-    const data = await redis.hgetall(key);
-    data.visits = Number(data.visits);
-
-    return { data, success: true };
-  } catch (error) {
-    return { error, success: false };
-  }
-}
+export { shorten, find, remove };

@@ -10,6 +10,6 @@ export const actions = {
     const res = await shorten(url);
 
     if (res.success) return res;
-    return fail(500, "Internal Server Error");
+    return fail(res.status, res.error);
   },
 };
