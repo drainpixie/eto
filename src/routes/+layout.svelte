@@ -1,6 +1,7 @@
-<script lang="ts">
+<script>
 	import "../app.css";
 	import Logo from "../lib/logo.svelte";
+	import patchouli from "../lib/assets/patchouli.png";
 </script>
 
 <svelte:head>
@@ -17,4 +18,6 @@
 	<Logo />
 
 	<slot />
+
+	<img id="patchouli" src={patchouli} alt="Patchouli Knowledge" />
 </main>

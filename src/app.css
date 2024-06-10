@@ -98,6 +98,16 @@ form {
   margin-bottom: 0.5rem;
 }
 
+#patchouli {
+  position: fixed;
+  right: 0px;
+  bottom: 5px;
+  z-index: -1;
+
+  height: auto;
+  width: 15%;
+}
+
 .message {
   margin-top: 1rem;
   display: flex;
