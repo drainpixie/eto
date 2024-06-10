@@ -2,6 +2,12 @@
 
 a short and sweet, uh, url shortener
 
+# 🍵 pages
+
+- /:slug
+- /:slug/stats
+- /delete
+
 # 🖥️ dev
 
 ```sh
