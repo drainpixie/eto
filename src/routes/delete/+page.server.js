@@ -1,5 +1,5 @@
 import { fail } from "@sveltejs/kit";
-import { remove } from "../../lib/server/url";
+import { remove } from "$lib/server/url";
 
 /** @type {import('@sveltejs/kit').Actions} */
 export const actions = {

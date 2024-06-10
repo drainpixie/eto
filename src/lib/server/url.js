@@ -1,5 +1,5 @@
-import { redis, URL_KEY } from "./redis";
 import { randomUUID, randomBytes } from "node:crypto";
+import { redis, URL_KEY } from "./redis";
 
 // TODO: Maybe hash, maybe not, I don't think
 //			 we really need that much security here.

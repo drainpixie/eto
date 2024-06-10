@@ -1,7 +1,7 @@
 import { error, redirect } from "@sveltejs/kit";
 
-import { find } from "../../lib/server/url";
-import { redis, URL_KEY } from "../../lib/server/redis";
+import { find } from "$lib/server/url";
+import { redis, URL_KEY } from "$lib/server/redis";
 
 /** @type {import('@sveltejs/kit').Load} */
 export const load = async ({ params }) => {

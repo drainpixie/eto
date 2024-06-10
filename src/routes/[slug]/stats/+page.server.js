@@ -1,5 +1,5 @@
-import { error, redirect } from "@sveltejs/kit";
-import { find } from "../../../lib/server/url";
+import { error } from "@sveltejs/kit";
+import { find } from "$lib/server/url";
 
 /** @type {import('@sveltejs/kit').ServerLoad} */
 export const load = async ({ params }) => {
