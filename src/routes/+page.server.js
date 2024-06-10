@@ -5,11 +5,10 @@ import { shorten } from "../lib/server/url";
 export const actions = {
   shorten: async ({ request }) => {
     const data = await request.formData();
+
     const url = data.get("url");
+    if (!url) return fail(400, { success: false, error: "URL is required" });
 
-    const res = await shorten(url);
-
-    if (res.success) return res;
-    return fail(res.status, res.error);
+    return shorten(url);
   },
 };

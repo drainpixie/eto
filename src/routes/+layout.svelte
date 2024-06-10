@@ -1,5 +1,6 @@
 <script lang="ts">
 	import "../app.css";
+	import Logo from "../lib/logo.svelte";
 </script>
 
 <svelte:head>
@@ -12,4 +13,8 @@
 	<meta name="theme-color" content="#ffc0cb" />
 </svelte:head>
 
-<slot />
+<main>
+	<Logo />
+
+	<slot />
+</main>

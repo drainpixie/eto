@@ -43,10 +43,17 @@ const remove = async (slug, key) => {
     .catch((error) => ({ success: false, status: 500, error: error.message }));
 };
 
-const find = (slug) =>
-  redis
+const find = async (slug) => {
+  const match = await redis
     .hgetall(`${URL_KEY}:${slug}`)
-    .then((data) => ({ data, status: 200, success: true }))
-    .catch((error) => ({ error, status: 500, success: false }));
+    .catch((error) => ({ error: error.message, status: 500, success: false }));
+
+  if (!match.url)
+    return { success: false, status: 404, error: "Resource not found" };
+
+  if (match.error) return match;
+
+  return { data: match, status: 200, success: true };
+};
 
 export { shorten, find, remove };
