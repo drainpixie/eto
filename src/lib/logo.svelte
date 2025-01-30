@@ -1,7 +1,6 @@
 <script>
 	let extra = "";
 
-	// 🍝 Best code ever
 	const typewrite = () =>
 		extra.length < 3
 			? (extra += ".")
